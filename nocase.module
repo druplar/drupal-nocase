@@ -1,0 +1,27 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * The nocase module allows for case insensitive Drupal passwords.
+ *
+ * @author Karthik Kumar ( http://drupal.org/user/21209 )
+ */
+
+/**
+ * Implementation of hook_form_alter.
+ */
+function nocase_form_alter($form_id, &$form) {
+  if ($form['#base'] == 'user_login' || $form_id == 'user_register') {
+    // Give nocase module's validate function preference over user_login.
+    $form['#validate'] = array('nocase_login_validate' => array()) + $form['#validate'];
+  }
+}
+
+/**
+ * Validation handler for the user_login and user_register forms.
+ */
+function nocase_login_validate($form_id, $form_values) {
+  // Convert password to lowercase.
+  form_set_value(array('#parents' => array('pass')), strtolower(trim($form_values['pass'])));
+}

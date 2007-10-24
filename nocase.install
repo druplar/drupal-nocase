@@ -1,0 +1,16 @@
+<?php
+// $Id$
+
+/**
+ * Implementation of hook_install().
+ */
+function nocase_install() {
+  drupal_set_message(t('Nocase module: Installation script complete.'));
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function nocase_uninstall() {
+  drupal_set_message(t('Nocase module: Uninstallation script complete.'));
+}

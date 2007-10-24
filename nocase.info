@@ -1,0 +1,3 @@
+; $Id$
+name = No case
+description = Enable case insensitive Drupal passwords.
