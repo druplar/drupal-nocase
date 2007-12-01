@@ -12,7 +12,7 @@
  * Implementation of hook_form_alter.
  */
 function nocase_form_alter($form_id, &$form) {
-  if ($form['#base'] == 'user_login' || $form_id == 'user_register') {
+  if ($form['#base'] == 'user_login' || $form_id == 'user_edit' || $form_id == 'user_register') {
     // Give nocase module's validate function preference over user_login.
     $form['#validate'] = array('nocase_login_validate' => array()) + $form['#validate'];
   }
