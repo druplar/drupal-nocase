@@ -1,3 +1,4 @@
 ; $Id$
 name = No case
 description = Enable case insensitive Drupal passwords.
+core = 6.x
