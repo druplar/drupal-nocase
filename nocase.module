@@ -22,8 +22,16 @@ function nocase_form_alter(&$form, $form_state, $form_id) {
  * Validation handler for the user_login and user_register forms.
  */
 function nocase_login_validate($form, &$form_state) {
+  // In case user e-mail verification is required, do not proceed further as
+  // this module does not work well with system generated passwords. Instead,
+  // it is recommended that the verification e-mail only rely on the one-time
+  // login link and not display the system generated password.
+  if (variable_get('user_email_verification', TRUE) && $form_state['values']['form_id'] == 'user_register') {
+    return;
+  }
+
   // Convert password to lowercase.
-  $pass = strtolower(trim($form_state['values']['pass']));
+  $pass = drupal_strtolower(trim($form_state['values']['pass']));
 
   // The user_profile_form is structured differently to the login forms.
   if ($form_state['values']['form_id'] == 'user_profile_form') {
@@ -32,4 +40,5 @@ function nocase_login_validate($form, &$form_state) {
   else {
     form_set_value($form['pass'], $pass, $form_state);
   }
+  exit();
 }

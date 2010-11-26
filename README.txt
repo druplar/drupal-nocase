@@ -14,6 +14,11 @@ need to reset their passwords in order to do so. Similarly, once this module has
 been installed, uninstalling it will lead to users using mixed-case passwords
 being locked out.
 
+Lastly, if the site is set to require e-mail verification prior to registration,
+it is important that the verification e-mail rely solely on the one-time login
+link to verify the account. In other words, the system generated password should
+not be included in the e-mail.
+
 Author(s)
 ---------
 Karthik Kumar / Zen / |gatsby| : http://drupal.org/user/21209
