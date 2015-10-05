@@ -28,10 +28,8 @@ function nocase_login_validate($form, &$form_state) {
   if (variable_get('user_email_verification', TRUE) && $form_state['values']['form_id'] == 'user_register') {
     return;
   }
-
   // Convert password to lowercase.
   $pass = drupal_strtolower(trim($form_state['values']['pass']));
-
   // The user_profile_form is structured differently to the login forms.
   if ($form_state['values']['form_id'] == 'user_profile_form') {
     form_set_value($form['account']['pass'], $pass, $form_state);
@@ -39,5 +37,4 @@ function nocase_login_validate($form, &$form_state) {
   else {
     form_set_value($form['pass'], $pass, $form_state);
   }
-  exit();
 }
